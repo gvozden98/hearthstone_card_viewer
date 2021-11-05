@@ -1,0 +1,19 @@
+{
+  "name": "hearthstone_deck_builder",
+  "version": "1.0.0",
+  "description": "Simple hearthstone deck builder. A user can create decks,save them, delete them and edit them later.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gvozden98/hearthstone_deck_builder.git"
+  },
+  "author": "gvozden98",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gvozden98/hearthstone_deck_builder/issues"
+  },
+  "homepage": "https://github.com/gvozden98/hearthstone_deck_builder#readme"
+}
