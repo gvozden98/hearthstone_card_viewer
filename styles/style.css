@@ -1,0 +1,9 @@
+#breadcrumbSearch {
+  padding-left: 4em;
+}
+
+@media only screen and (max-width: 1024px) {
+  #breadcrumbSearch {
+    padding-left: 0em;
+  }
+}
