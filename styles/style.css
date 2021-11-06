@@ -2,6 +2,16 @@
   padding-left: 4em;
 }
 
+.card {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+#titleName {
+  font-family: "Irish Grover", cursive;
+}
+
 @media only screen and (max-width: 1024px) {
   #breadcrumbSearch {
     padding-left: 0em;

@@ -3,18 +3,63 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello Bulma!</title>
+    <title>HS - DeckBuilder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
     <link rel="stylesheet" href="../styles/style.css" />
   </head>
-  <body>
+  <body class="has-navbar-fixed-top">
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="../app/index.html">
+          <img src="../resoruces/Hearthstone-Logo-PNG-Image.png">
+        </a>
+    
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+    
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">
+            Home
+          </a>   
+          <a class="navbar-item">
+            Decks
+          </a>          
+          <a class="navbar-item">
+            Contact
+          </a>
+            </a>
+          </div>
+        </div>
+    
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light">
+                Log in
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
     <section class="section">
       <div class="container">
-        <h1 class="title">Hello World</h1>
-        <p class="subtitle">My first website with <strong>Bulma</strong>!</p>
+        <h1 class="title is-size-1" id="titleName">Hearthstone Deck Builder</h1>
+        <!-- <p class="subtitle">My first website with <strong>Bulma</strong>!</p> -->
         <div class="tabs">
           <ul>
             <li class="is-active"><a>Search</a></li>
@@ -23,15 +68,43 @@
           </ul>
         </div>
         <nav
-          class="breadcrumb has-dot-separator"
+          class="breadcrumb is-centered aria-label="breadcrumbs""
           aria-label="breadcrumbs"
           id="breadcrumbSearch"
         >
-          <ul>
-            <li><a href="#">Bulma</a></li>
-            <li><a href="#">Documentation</a></li>
-            <li><a href="#">Components</a></li>
-            <li class="is-active">
+          <ul id="breadcrumbUl">
+            <li>
+              <label for="search" class="is-size-4 mr-2">Find a card: </label>
+              <input
+                class="input is-small mr-4"
+                type="text"
+                placeholder="Leeroy Jenkins"
+                id="search"
+              />
+            </li>
+            <!-- <div class="select">
+              <select>
+                <option selected="true" disabled="disabled">
+                  Select attack
+                </option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+              </select>
+            </div> -->
+            <li class="is-size-5"><a href="#">Attack</a></li>
+            <li class="is-size-5"><a href="#">Health</a></li>
+            <li class="is-size-5"><a href="#">Mana cost</a></li>
+            <li class="is-active is-size-5">                                      <!-- is active needs to be used in js-->
               <a href="#" aria-current="page">Breadcrumb</a>
             </li>
           </ul>
@@ -40,9 +113,9 @@
           <div class="column is-one-fifth">
             <div class="card">
               <div class="card-image">
-                <figure class="image is-4by3">
+                <figure>
                   <img
-                    src="https://bulma.io/images/placeholders/1280x960.png"
+                    src="../resoruces/4634baf2d3c266396dbee5ded8f727b395f973221c05346347973233227329b0.png"
                     alt="Placeholder image"
                   />
                 </figure>
@@ -137,4 +210,5 @@
       </div>
     </section>
   </body>
+  <script src="../scripts/navbarScript.js"></script>
 </html>
