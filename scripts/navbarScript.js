@@ -21,5 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    
+    const decksDiv = document.getElementById("decksDiv");
+    decksDiv.addEventListener("click", function () { //decks dropdown menu toggle
+        this.classList.toggle("is-active");
+    })
 
+
+    
 });
