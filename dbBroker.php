@@ -1,12 +1,12 @@
 <?php
 $host = "localhost";
-$db = "dekovi";
+$db = "hearthstone_deck_builder";
 $user = "root";
-$pass = "admin";
+$pass = "";
 
-$conn = new mysqli($host,$user,$pass,$db);
+$conn = new mysqli($host, $user, $pass, $db);
 
 
-if ($conn->connect_errno){
-    exit("Nauspesna konekcija: greska> ".$conn->connect_error.", err kod>".$conn->connect_errno);
+if ($conn->connect_errno) {
+    exit("Nauspesna konekcija: greska> " . $conn->connect_error . ", err kod>" . $conn->connect_errno);
 }
