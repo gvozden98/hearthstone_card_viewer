@@ -1,16 +1,15 @@
 <?php
-require "../app/header.php";
 require "../dbBroker.php";
+require "../app/header.php";
 require "../model/user.php";
 
 session_start();
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if (isset($_POST['email']) && isset($_POST['password'])) {
     $uemail = $_POST['email'];
     $upass = $_POST['password'];
-
-    // $conn = new mysqli() /// pregazena konekcija iz dbBrokera;
+    //$conn = new mysqli(); /// pregazena konekcija iz dbBrokera;
     $korisnik = new User(1, $uemail, $upass);
-    // $odg = $korisnik->logInUser($uemail, $upass, $conn);
+    //$odg = $korisnik->logInUser($uemail, $upass, $conn);
     $odg = User::logInUser($korisnik, $conn); //pristup statickim funkcijama preko klase
 
     if ($odg->num_rows == 1) {
@@ -28,6 +27,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         console.log("Niste se prijavili!");
     </script>
     `;
+        
     }
 }
 ?>

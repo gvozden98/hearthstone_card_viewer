@@ -5,7 +5,6 @@
     const drugi = document.getElementById("2");
     const treci = document.getElementById("3");
     const cetvrti = document.getElementById("4");
-    console.log(breadcrumbs[0].childNodes[0]);
     addEventListener("click", function(e){        //event delegation
         if(e.target && e.target.id== 'search'){
         breadcrumbs[0].innerHTML = `
