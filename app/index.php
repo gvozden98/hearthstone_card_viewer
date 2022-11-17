@@ -2,7 +2,6 @@
 <section class="section">
   <div class="container">
     <h1 class="title is-size-1" id="titleName">Hearthstone Deck Builder</h1>
-    <!-- <p class="subtitle">My first website with <strong>Bulma</strong>!</p> -->
     <div class="tabs">
       <ul>
         <li class="is-active"><a>Search</a></li>
@@ -97,5 +96,6 @@
 </body>
 <script src="../scripts/navbarScript.js"></script>
 <script src="../scripts/breadcrumbScript.js"></script>
+
 
 </html>

@@ -4,7 +4,7 @@ $db = "hearthstone_deck_builder";
 $user = "root";
 $pass = "";
 
-$conn = new mysqli($host, $user, $pass, $db);
+$conn = mysqli_connect($host, $user, $pass, $db);
 
 
 if ($conn->connect_errno) {

@@ -3,7 +3,6 @@ require "../dbBroker.php";
 require "../app/header.php";
 require "../model/user.php";
 
-session_start();
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $uemail = $_POST['email'];
     $upass = $_POST['password'];
@@ -13,21 +12,13 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $odg = User::logInUser($korisnik, $conn); //pristup statickim funkcijama preko klase
 
     if ($odg->num_rows == 1) {
-        echo `
-        <script>
-            console.log("Uspešno ste se prijavili");
-        </script>
-        `;
         $_SESSION['user_id'] = $korisnik->id;
-        header('Location: ../app/index.php');
+        $_SESSION['user_email'] = $korisnik->email;
+        header('Location: ../app/index.php?loginok');
         exit();
     } else {
-        echo `
-    <script>
-        console.log("Niste se prijavili!");
-    </script>
-    `;
-        
+        header('Location: ../app/login.php?error=loginfailed');
+        exit();
     }
 }
 ?>

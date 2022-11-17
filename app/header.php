@@ -1,7 +1,11 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>HS - DeckBuilder</title>
@@ -60,12 +64,28 @@
         <div class="navbar-end has-background-primary">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a class="button is-black">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light" href="../app/login.php">
-                        Log in
-                    </a>
+
+                    <?php
+                    if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
+                        $mail = $_SESSION['user_email'];
+                        echo "
+                        <div class='navbar-item'>
+                            <p id='mailFont'>$mail</p>
+                        </div>
+                        
+                        ";
+                    } else {
+                        echo
+                        '
+                        <a class="button is-black" href="../app/signup.php">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a class="button is-light" href="../app/login.php">
+                            Log in
+                        </a>';
+                    }
+                    ?>
+
                 </div>
             </div>
         </div>
