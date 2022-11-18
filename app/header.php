@@ -72,7 +72,9 @@ session_start();
                         <div class='navbar-item'>
                             <p id='mailFont'>$mail</p>
                         </div>
-                        
+                        <a class='button is-black' href='../app/logout.php'>
+                            <strong>Logout</strong>
+                        </a>
                         ";
                     } else {
                         echo
