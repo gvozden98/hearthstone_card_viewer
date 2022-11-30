@@ -31,7 +31,6 @@ session_start();
                 <span aria-hidden="true"></span>
             </a>
         </div>
-
         <div id="navbarBasicExample" class="navbar-menu has-background-primary">
             <div class="navbar-start">
                 <a class="navbar-item" id="home" href="../app/index.php">
@@ -54,7 +53,7 @@ session_start();
                         </a>
                     </div>
                 </div>
-                <a class="navbar-item" id="contact">
+                <a class="navbar-item" id="contact" href="../app/contact.php">
                     Contact
                 </a>
                 </a>
@@ -66,7 +65,7 @@ session_start();
                 <div class="buttons">
 
                     <?php
-                    if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
+                    if (isset($_SESSION['user_email'])) {
                         $mail = $_SESSION['user_email'];
                         echo "
                         <div class='navbar-item'>

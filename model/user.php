@@ -6,9 +6,9 @@ class User
     public $email;
     public $password;
 
-    public function __construct($id = null, $email = null, $password = null)
+    public function __construct($email = null, $password = null)
     {
-        $this->id = $id;
+
         $this->email = $email;
         $this->password = $password;
     }
@@ -65,5 +65,19 @@ class User
         }
 
         mysqli_stmt_close($stmt);
+    }
+    public static function sendMessage($email, $subject, $msg, $user_id, mysqli $conn)
+    {
+        $sql = "INSERT INTO messages (subject,msg,user_id,email) VALUES (?,?,?,?)";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: ../app/contact.php?error=stmtfailed");
+            exit();
+        }
+        mysqli_stmt_bind_param($stmt, "ssss", $subject, $msg, $user_id, $email);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        header("location: ../app/contact.php?error=none");
+        exit();
     }
 }
