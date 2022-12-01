@@ -1,3 +1,4 @@
+const key = config.MY_KEY;
 window.addEventListener("load", () => {
   const data = null;
 
@@ -16,10 +17,7 @@ window.addEventListener("load", () => {
     "GET",
     "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic?collectible=1"
   );
-  xhr.setRequestHeader(
-    "X-RapidAPI-Key",
-    "7a35e73386msh2776a8d9bddec10p10e66bjsn8cfb6844449d"
-  );
+  xhr.setRequestHeader("X-RapidAPI-Key", `${key}`);
   xhr.setRequestHeader(
     "X-RapidAPI-Host",
     "omgvamp-hearthstone-v1.p.rapidapi.com"

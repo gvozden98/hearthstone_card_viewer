@@ -9,6 +9,7 @@ session_start();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>HS - DeckBuilder</title>
+    <script src="../resoruces/config.js"></script>
     <link rel="icon" href="../resoruces/Hearthstone-Logo-PNG-Image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
