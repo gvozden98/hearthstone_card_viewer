@@ -4,9 +4,9 @@
     <h1 class="title is-size-1" id="titleName">Hearthstone Deck Builder</h1>
     <div class="tabs">
       <ul>
-        <li class="is-active"><a>Search</a></li>
-        <li><a>Classes</a></li>
-        <li><a>Races</a></li>
+        <li class="is-active" id="search"><a>Search</a></li>
+        <li id="classes"><a>Classes</a></li>
+        <li id="races"><a>Races</a></li>
       </ul>
     </div>
     <nav class="breadcrumb is-centered has-dot-separator" aria-label="breadcrumbs" aria-label="breadcrumbs" id="breadcrumbSearch">
@@ -28,9 +28,11 @@
   </div>
 </section>
 </body>
+<script src="../scripts/filtering.js"></script>
+<script src="../scripts/breadcrumbNotBugged.js"></script>
+<script src="../scripts/breadcrumbScript.js"></script>
 
 <script src="../scripts/navbarScript.js"></script>
-<script src="../scripts/breadcrumbScript.js"></script>
 <script src="../scripts/apiLoading.js"></script>
 
 

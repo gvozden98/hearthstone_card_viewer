@@ -1,5 +1,6 @@
 const key = config.MY_KEY;
-window.addEventListener("load", () => {
+window.addEventListener("load", sendRequest);
+function sendRequest() {
   const data = null;
 
   const xhr = new XMLHttpRequest();
@@ -24,7 +25,7 @@ window.addEventListener("load", () => {
   );
 
   xhr.send(data);
-});
+}
 
 function displayCards(responseCards) {
   const cardContainer = document.getElementById("card-container");

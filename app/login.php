@@ -13,7 +13,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
     if ($odg->num_rows == 1) {
         $_SESSION['user_id'] = $odg->fetch_assoc()['user_id'];
-        echo $_SESSION['user_id'];  
+        echo $_SESSION['user_id'];
         $_SESSION['user_email'] = $korisnik->email;
         header('Location: ../app/index.php?loginok');
         exit();
@@ -68,6 +68,5 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 </section>
 </body>
 <script src="../scripts/navbarScript.js"></script>
-<script src="../scripts/breadcrumbScript.js"></script>
 
 </html>

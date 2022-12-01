@@ -71,7 +71,5 @@ if (isset($_POST["subject"]) && isset($_POST["message"]) && isset($_POST["messag
 </section class="section">
 </body>
 <script src="../scripts/navbarScript.js"></script>
-<script src="../scripts/breadcrumbScript.js"></script>
-
 
 </html>
