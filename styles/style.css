@@ -22,3 +22,9 @@
     padding-left: 0em;
   }
 }
+
+#loader {
+  display: flex;
+}
+
+
