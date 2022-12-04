@@ -1,6 +1,8 @@
 const key = config.MY_KEY;
+const cardContainer = document.getElementById("card-container");
 window.addEventListener("load", sendRequest);
-function sendRequest() {
+function sendRequest(cost = null, attack = null, health = null) {
+  cost = null; //iz nekog tazloga cost nije null pri prvom ocitavanju stranice, ne rauzmem zasto
   const data = null;
 
   const xhr = new XMLHttpRequest();
@@ -9,15 +11,43 @@ function sendRequest() {
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
       const cards = JSON.parse(this.responseText);
-      displayCards(cards);
+      cardContainer.innerHTML = "";
+      displayCards(cards, cards.length);
+      console.log(cards.length);
       console.log(cards);
     }
   });
-
-  xhr.open(
-    "GET",
-    "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic?collectible=1"
-  );
+  if (cost != null) {
+    xhr.open(
+      "GET",
+      `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic?cost=${cost}&collectible=1`
+    );
+    console.log("cost");
+  }
+  if (attack != null) {
+    xhr.open(
+      "GET",
+      `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic?attack=${attack}&collectible=1`
+    );
+    console.log("attack");
+    console.log(
+      `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic?attack=${attack}&collectible=1`
+    );
+  }
+  if (health != null) {
+    xhr.open(
+      "GET",
+      `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic?health=${health}&collectible=1`
+    );
+    console.log("health");
+  }
+  if (attack == null && health == null && cost == null) {
+    xhr.open(
+      "GET",
+      "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic?collectible=1"
+    );
+    console.log("else");
+  }
   xhr.setRequestHeader("X-RapidAPI-Key", `${key}`);
   xhr.setRequestHeader(
     "X-RapidAPI-Host",
@@ -27,9 +57,8 @@ function sendRequest() {
   xhr.send(data);
 }
 
-function displayCards(responseCards) {
-  const cardContainer = document.getElementById("card-container");
-  const cardLimit = 255;
+function displayCards(responseCards, responseLength) { //nije dobro nesto
+  const cardLimit = responseLength;
   const cardIncrease = 10;
   const pageCount = Math.ceil(cardLimit / cardIncrease);
   let currentPage = 1;

@@ -23,7 +23,7 @@ classes.addEventListener("click", function () {
     search.classList.remove("is-active");
     races.classList.remove("is-active");
   }
-
+ 
   chooseClass();
   classes.classList.add("is-active");
 });
@@ -40,13 +40,13 @@ races.addEventListener("click", function () {
 
 function chooseClass() {
   breadcrumbUl.innerHTML = `
-  <li><a>Priest</a></li>
-  <li><a>Warrior</a></li>
-  <li><a>Mage</a></li>
-  <li><a>Rogue</a></li>
-  <li><a>Druid</a></li>
-  <li><a>Hunter</a></li>
-  <li><a>Paladin</a></li>
-  <li><a>Warlock</a></li>
+  <li class="is-size-5"><a>Priest</a></li>
+  <li class="is-size-5"><a>Warrior</a></li>
+  <li class="is-size-5"><a>Mage</a></li>
+  <li class="is-size-5"><a>Rogue</a></li>
+  <li class="is-size-5"><a>Druid</a></li>
+  <li class="is-size-5"><a>Hunter</a></li>
+  <li class="is-size-5"><a>Paladin</a></li>
+  <li class="is-size-5"><a>Warlock</a></li>
   `;
 }

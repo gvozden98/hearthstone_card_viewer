@@ -27,7 +27,7 @@ addEventListener("click", function (e) {
   if (e.target && e.target.id == "attack") {
     breadcrumbs[1].innerHTML = `
         <div class="select is-small mr-2 ml-2">
-            <select>
+            <select id="selectAttack">
                 <option selected="true" disabled="disabled">
                 Select attack
                 </option>
@@ -46,6 +46,7 @@ addEventListener("click", function (e) {
             </select>
         </div>`;
     revertBreadcrumbs(1);
+
   }
 });
 

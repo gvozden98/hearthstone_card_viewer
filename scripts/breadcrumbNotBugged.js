@@ -1,3 +1,4 @@
+window.onload = searchCrumbs;
 function searchCrumbs() {
   document.getElementById("breadcrumbUl").innerHTML = `
       <li class="is-size-5 bcjs" id="1"><a href="#" id="search">Search</a></li>
@@ -28,7 +29,7 @@ function searchCrumbs() {
     if (e.target && e.target.id == "attack") {
       breadcrumbs[1].innerHTML = `
           <div class="select is-small mr-2 ml-2">
-              <select>
+              <select id="selectAttack">
                   <option selected="true" disabled="disabled">
                   Select attack
                   </option>
@@ -47,6 +48,11 @@ function searchCrumbs() {
               </select>
           </div>`;
       revertBreadcrumbs(1);
+      let attackOptions = document.getElementById("selectAttack");
+      attackOptions.addEventListener("change", function () {
+        let attack = attackOptions.options[attackOptions.selectedIndex].text; //get selected option text
+        sendRequest(null, attack, null);
+      });
     }
   });
 
@@ -122,5 +128,12 @@ function searchCrumbs() {
       drugi.innerHTML = `<a href="#"id="attack">Attack</a>`;
       treci.innerHTML = `<a href="#"id="health">Health</a>`;
     }
+  }
+  if (document.getElementById("selectAttack") != null) {
+    let attackOptions = document.getElementById("selectAttack");
+    attackOptions.addEventListener("change", function () {
+      let attack = attackOptions.options[attackOptions.selectedIndex].text;
+      console.log(attack);
+    });
   }
 }

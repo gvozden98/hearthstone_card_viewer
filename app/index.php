@@ -28,10 +28,10 @@
   </div>
 </section>
 </body>
-<script src="../scripts/filtering.js"></script>
 <script src="../scripts/breadcrumbNotBugged.js"></script>
-<script src="../scripts/breadcrumbScript.js"></script>
+<script src="../scripts/filtering.js"></script>
 
+<!-- <script src="../scripts/breadcrumbScript.js"></script> -->
 <script src="../scripts/navbarScript.js"></script>
 <script src="../scripts/apiLoading.js"></script>
 
