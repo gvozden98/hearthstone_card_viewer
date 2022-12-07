@@ -33,25 +33,25 @@ function searchCrumbs() {
                   <option selected="true" disabled="disabled">
                   Select attack
                   </option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
               </select>
           </div>`;
       revertBreadcrumbs(1);
       let attackOptions = document.getElementById("selectAttack");
       attackOptions.addEventListener("change", function () {
         let attack = attackOptions.options[attackOptions.selectedIndex].text; //get selected option text
-        sendRequest(null, attack, null);
+        sendRequest(e, attack, null, null);
       });
     }
   });
@@ -60,7 +60,7 @@ function searchCrumbs() {
     if (e.target && e.target.id == "health") {
       breadcrumbs[2].innerHTML = `
           <div class="select is-small mr-2 ml-2">
-              <select>
+              <select id=selectHealth>
                   <option selected="true" disabled="disabled">
                   Select health
                   </option>
@@ -80,13 +80,19 @@ function searchCrumbs() {
           </div>`;
 
       revertBreadcrumbs(2);
+      //moras da ih stavis u try catch i da hendlas 404
+      let selectHealth = document.getElementById("selectHealth");
+      selectHealth.addEventListener("change", function () {
+        let health = selectHealth.options[selectHealth.selectedIndex].text; //get selected option text
+        sendRequest(e, null, health, null);
+      });
     }
   });
   addEventListener("click", function (e) {
     if (e.target && e.target.id == "manaCost") {
       breadcrumbs[3].innerHTML = `
           <div class="select is-small mr-2 ml-2">
-              <select>
+              <select id="selectManaCost">
                   <option selected="true" disabled="disabled">
                   Select mana cost
                   </option>
@@ -104,6 +110,11 @@ function searchCrumbs() {
           </div>`;
 
       revertBreadcrumbs(3);
+      let selectManaCost = document.getElementById("selectManaCost");
+      selectManaCost.addEventListener("change", function () {
+        let cost = selectManaCost.options[selectManaCost.selectedIndex].text; //get selected option text
+        sendRequest(e, null, null, cost);
+      });
     }
   });
 

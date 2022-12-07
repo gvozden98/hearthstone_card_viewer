@@ -1,8 +1,9 @@
 const key = config.MY_KEY;
 const cardContainer = document.getElementById("card-container");
 window.addEventListener("load", sendRequest);
-function sendRequest(cost = null, attack = null, health = null) {
-  cost = null; //iz nekog tazloga cost nije null pri prvom ocitavanju stranice, ne rauzmem zasto
+function sendRequest(e, attack = null, health = null, cost = null) {
+  //iz nekog tazloga cost nije null pri prvom ocitavanju stranice, ne rauzmem zasto
+  console.log(cost);
   const data = null;
 
   const xhr = new XMLHttpRequest();
@@ -10,11 +11,14 @@ function sendRequest(cost = null, attack = null, health = null) {
 
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
-      const cards = JSON.parse(this.responseText);
-      cardContainer.innerHTML = "";
-      displayCards(cards, cards.length);
-      console.log(cards.length);
-      console.log(cards);
+      if (this.status === 200) {
+        const cards = JSON.parse(this.responseText);
+        cardContainer.innerHTML = "";
+        displayCards(cards, cards.length);
+        console.log(cards.length);
+        console.log(cards);
+      }
+    } else {
     }
   });
   if (cost != null) {
@@ -57,26 +61,8 @@ function sendRequest(cost = null, attack = null, health = null) {
   xhr.send(data);
 }
 
-function displayCards(responseCards, responseLength) { //nije dobro nesto
-  const cardLimit = responseLength;
-  const cardIncrease = 10;
-  const pageCount = Math.ceil(cardLimit / cardIncrease);
-  let currentPage = 1;
-
-  let throttleTimer;
-
-  const throttle = (callback, time) => {
-    //proveri sta se ovde desava, nije ti nista jasno https://webdesign.tutsplus.com/tutorials/how-to-implement-infinite-scrolling-with-javascript--cms-37055
-    if (throttleTimer) return;
-
-    throttleTimer = true;
-
-    setTimeout(() => {
-      callback();
-      throttleTimer = false;
-    }, time);
-  };
-
+function displayCards(responseCards, responseLength) {
+  //probao sam da napravim dinamicko loadovanje slika ali nisam uspeo zboog event listenera
   const createCard = (index) => {
     const card = document.createElement("div");
     card.innerHTML = `<div class="card">
@@ -92,39 +78,11 @@ function displayCards(responseCards, responseLength) { //nije dobro nesto
     card.className = "column is-one-fifth";
     cardContainer.appendChild(card);
   };
-  const addCards = (pageIndex) => {
-    currentPage = pageIndex;
-
-    const startRange = (pageIndex - 1) * cardIncrease;
-    const endRange =
-      currentPage == pageCount ? cardLimit : pageIndex * cardIncrease;
-
-    for (let i = startRange + 1; i <= endRange; i++) {
+  const addCards = () => {
+    for (let i = 1; i <= responseLength; i++) {
       createCard(i);
     }
   };
 
-  const handleInfiniteScroll = () => {
-    //i ovde nemas pojma sta se desava
-    throttle(() => {
-      const endOfPage =
-        window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
-
-      if (endOfPage) {
-        addCards(currentPage + 1);
-      }
-
-      if (currentPage === pageCount) {
-        removeInfiniteScroll();
-      }
-    }, 500);
-  };
-
-  const removeInfiniteScroll = () => {
-    window.removeEventListener("scroll", handleInfiniteScroll);
-  };
-
-  addCards(currentPage);
-
-  window.addEventListener("scroll", handleInfiniteScroll);
+  addCards();
 }
