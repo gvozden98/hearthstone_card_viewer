@@ -19,10 +19,22 @@ function searchCrumbs() {
             class="input is-small mr-4"
             type="text"
             placeholder="Leeroy Jenkins"
-            id="search"
+            id="searchCard"
           />`;
 
       revertBreadcrumbs(0);
+      let searchQuery = this.document.getElementById("searchCard");
+      let debounceTimeoutId; 
+      searchQuery.addEventListener("keyup", function (e) {
+        if (searchQuery.value.length > 1) {
+          clearTimeout(debounceTimeoutId);
+          console.log(searchQuery.value);
+          debounceTimeoutId = setTimeout(
+            () => searchCard(e, searchQuery.value),
+            1000
+          );
+        }
+      });
     }
   });
   addEventListener("click", function (e) {

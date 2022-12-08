@@ -14,7 +14,7 @@ function sendRequest(e, attack = null, health = null, cost = null) {
       if (this.status === 200) {
         const cards = JSON.parse(this.responseText);
         cardContainer.innerHTML = "";
-        displayCards(cards, cards.length);
+        displayCards(cards);
         console.log(cards.length);
         console.log(cards);
       }
@@ -61,7 +61,49 @@ function sendRequest(e, attack = null, health = null, cost = null) {
   xhr.send(data);
 }
 
-function displayCards(responseCards, responseLength) {
+function searchCard(e, searchQuery) {
+  const data = null;
+
+  const xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === this.DONE) {
+      const cards = JSON.parse(this.responseText);
+      cardContainer.innerHTML = "";
+      console.log(cards);
+      displayCards(filterClassic(cards));
+    }
+  });
+
+  xhr.open(
+    "GET",
+    `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/search/${searchQuery}?collectible=1`
+  );
+  xhr.onloadend = function () {
+    if (xhr.status == 404) {
+      cardContainer.innerHTML = `
+      <div class="column is-one-quarter">
+    </div>
+      <div class="column is-half has-background-warning mt-2">
+        <p class="bd-notification">
+            The card with that name does not exist, check your input!
+        </p>
+      </div>
+      <div class="column is-one-quarter">
+    </div>`;
+      throw new Error("Server replied 404");
+    }
+  };
+  xhr.setRequestHeader("X-RapidAPI-Key", `${key}`);
+  xhr.setRequestHeader(
+    "X-RapidAPI-Host",
+    "omgvamp-hearthstone-v1.p.rapidapi.com"
+  );
+
+  xhr.send(data);
+}
+function displayCards(responseCards) {
   //probao sam da napravim dinamicko loadovanje slika ali nisam uspeo zboog event listenera
   const createCard = (index) => {
     const card = document.createElement("div");
@@ -79,10 +121,21 @@ function displayCards(responseCards, responseLength) {
     cardContainer.appendChild(card);
   };
   const addCards = () => {
-    for (let i = 1; i <= responseLength; i++) {
+    for (let i = 1; i <= responseCards.length; i++) {
       createCard(i);
     }
   };
 
   addCards();
+}
+function filterClassic(cards) {
+  let newCards = [],
+    newCardIndex = 0;
+  for (let index = 0; index < cards.length; index++) {
+    if (cards[index].cardSet === "Classic") {
+      //console.log(cards[index]);
+      newCards[newCardIndex++] = cards[index];
+    } else continue;
+  }
+  return newCards;
 }
