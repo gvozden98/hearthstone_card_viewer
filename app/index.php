@@ -1,7 +1,7 @@
 <?php include "../app/header.php" ?>
 <section class="section">
   <div class="container">
-    <h1 class="title is-size-1" id="titleName">Hearthstone Deck Builder</h1>
+    <h1 class="title is-size-1" id="titleName">Hearthstone Card Viewer</h1>
     <div class="tabs">
       <ul>
         <li class="is-active" id="search"><a>Search</a></li>
@@ -33,6 +33,7 @@
 
 <!-- <script src="../scripts/breadcrumbScript.js"></script> -->
 <script src="../scripts/navbarScript.js"></script>
+<script src="../scripts/handleUl.js"></script>
 <script src="../scripts/apiLoading.js"></script>
 
 

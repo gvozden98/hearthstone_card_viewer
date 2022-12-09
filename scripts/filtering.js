@@ -23,9 +23,9 @@ classes.addEventListener("click", function () {
     search.classList.remove("is-active");
     races.classList.remove("is-active");
   }
- 
   chooseClass();
   classes.classList.add("is-active");
+  getCardsByClassOrRace(true);
 });
 races.addEventListener("click", function () {
   if (
@@ -35,18 +35,31 @@ races.addEventListener("click", function () {
     search.classList.remove("is-active");
     classes.classList.remove("is-active");
   }
+  chooseRace();
   races.classList.add("is-active");
+  getCardsByClassOrRace(false);
 });
 
 function chooseClass() {
   breadcrumbUl.innerHTML = `
-  <li class="is-size-5"><a>Priest</a></li>
-  <li class="is-size-5"><a>Warrior</a></li>
-  <li class="is-size-5"><a>Mage</a></li>
-  <li class="is-size-5"><a>Rogue</a></li>
-  <li class="is-size-5"><a>Druid</a></li>
-  <li class="is-size-5"><a>Hunter</a></li>
-  <li class="is-size-5"><a>Paladin</a></li>
-  <li class="is-size-5"><a>Warlock</a></li>
+  <li class="is-size-5 hearthStoneClasses"><a>Priest</a></li>
+  <li class="is-size-5 hearthStoneClasses"><a>Warrior</a></li>
+  <li class="is-size-5 hearthStoneClasses"><a>Mage</a></li>
+  <li class="is-size-5 hearthStoneClasses"><a>Rogue</a></li>
+  <li class="is-size-5 hearthStoneClasses"><a>Druid</a></li>
+  <li class="is-size-5 hearthStoneClasses"><a>Hunter</a></li>
+  <li class="is-size-5 hearthStoneClasses"><a>Paladin</a></li>
+  <li class="is-size-5 hearthStoneClasses"><a>Warlock</a></li>
+  `;
+}
+function chooseRace() {
+  breadcrumbUl.innerHTML = `
+  <li class="is-size-5 "><a>Dragon</a></li>
+  <li class="is-size-5 "><a>Murloc</a></li>
+  <li class="is-size-5 "><a>Demon</a></li>
+  <li class="is-size-5 "><a>Beast</a></li>
+  <li class="is-size-5 "><a>Pirate</a></li>
+  <li class="is-size-5 "><a>Totem</a></li>
+  <li class="is-size-5 "><a>Mech</a></li>
   `;
 }

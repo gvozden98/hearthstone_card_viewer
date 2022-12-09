@@ -1,4 +1,4 @@
-window.onload = searchCrumbs;
+window.onload = searchCrumbs;;
 function searchCrumbs() {
   document.getElementById("breadcrumbUl").innerHTML = `
       <li class="is-size-5 bcjs" id="1"><a href="#" id="search">Search</a></li>
@@ -24,7 +24,7 @@ function searchCrumbs() {
 
       revertBreadcrumbs(0);
       let searchQuery = this.document.getElementById("searchCard");
-      let debounceTimeoutId; 
+      let debounceTimeoutId;
       searchQuery.addEventListener("keyup", function (e) {
         if (searchQuery.value.length > 1) {
           clearTimeout(debounceTimeoutId);
@@ -63,7 +63,7 @@ function searchCrumbs() {
       let attackOptions = document.getElementById("selectAttack");
       attackOptions.addEventListener("change", function () {
         let attack = attackOptions.options[attackOptions.selectedIndex].text; //get selected option text
-        sendRequest(e, attack, null, null);
+        sendRequest(e, attack, null, null, null);
       });
     }
   });
@@ -96,7 +96,7 @@ function searchCrumbs() {
       let selectHealth = document.getElementById("selectHealth");
       selectHealth.addEventListener("change", function () {
         let health = selectHealth.options[selectHealth.selectedIndex].text; //get selected option text
-        sendRequest(e, null, health, null);
+        sendRequest(e, null, health, null, null);
       });
     }
   });
@@ -125,7 +125,7 @@ function searchCrumbs() {
       let selectManaCost = document.getElementById("selectManaCost");
       selectManaCost.addEventListener("change", function () {
         let cost = selectManaCost.options[selectManaCost.selectedIndex].text; //get selected option text
-        sendRequest(e, null, null, cost);
+        sendRequest(e, null, null, cost, null);
       });
     }
   });

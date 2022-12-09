@@ -37,26 +37,8 @@ session_start();
                 <a class="navbar-item" id="home" href="../app/index.php">
                     Home
                 </a>
-                <div class="navbar-item has-dropdown" id="decksDiv">
-                    <a class="navbar-link" id="decks">
-                        Decks
-                    </a>
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item">
-                            New deck
-                        </a>
-                        <a class="navbar-item">
-                            Edit a deck
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item">
-                            View decks
-                        </a>
-                    </div>
-                </div>
                 <a class="navbar-item" id="contact" href="../app/contact.php">
                     Contact
-                </a>
                 </a>
             </div>
         </div>
