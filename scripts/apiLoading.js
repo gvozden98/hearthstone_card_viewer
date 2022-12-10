@@ -8,8 +8,6 @@ function sendRequest(
   cost = null,
   hearthstoneClass = null
 ) {
-  //iz nekog tazloga cost nije null pri prvom ocitavanju stranice, ne rauzmem zasto
-  console.log(cost);
   const data = null;
 
   const xhr = new XMLHttpRequest();
@@ -163,6 +161,9 @@ function displayCards(responseCards) {
   };
   const addCards = () => {
     for (let i = 1; i <= responseCards.length; i++) {
+      if (responseCards[i - 1].img === undefined) {
+        continue;
+      }
       createCard(i);
     }
   };

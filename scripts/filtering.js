@@ -63,3 +63,12 @@ function chooseRace() {
   <li class="is-size-5 "><a>Mech</a></li>
   `;
 }
+function getCardsByClassOrRace(classOrRace) {
+  let liItems = breadcrumbUl.getElementsByTagName("li");
+  for (let index = 0; index < liItems.length; index++) {
+    liItems[index].addEventListener("click", function (e) {
+      console.log(liItems[index].innerText);
+      cardsByClassOrRaceRequest(e, liItems[index].innerText, classOrRace);
+    });
+  }
+}
