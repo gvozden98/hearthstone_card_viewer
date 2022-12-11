@@ -1,5 +1,5 @@
 <?php
-require "../dbBroker.php";
+require "../model/dbBroker.php";
 require "../app/header.php";
 require "../model/user.php";
 
@@ -9,7 +9,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     //$conn = new mysqli(); /// pregazena konekcija iz dbBrokera;
     $korisnik = new User($uemail, $upass);
     //$odg = $korisnik->logInUser($uemail, $upass, $conn);
-    $odg = User::logInUser($korisnik, $conn); //pristup statickim funkcijama preko klase
+    $odg = $korisnik->logInUser($korisnik, $conn); //pristup statickim funkcijama preko klase
 
     if ($odg->num_rows == 1) {
         $_SESSION['user_id'] = $odg->fetch_assoc()['user_id'];

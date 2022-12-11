@@ -1,5 +1,5 @@
 <?php
-require "../dbBroker.php";
+require "../model/dbBroker.php";
 require "../app/header.php";
 require "../model/user.php";
 
