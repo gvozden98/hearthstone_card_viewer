@@ -37,7 +37,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                                     </div>
                                     <label for='' class='label'>Email</label>
                                     <div class='control has-icons-left'>
-                                    <input type='email' value='{$mail}' class='input' name='remail' required>
+                                    <input type='email' value='{$mail}' class='input' name='email' required>
                                     <span class='icon is-small is-left'>
                                         <i class='fa fa-envelope'></i>
                                     </span>";
@@ -45,32 +45,30 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                                 echo "
                                     <label for='' class='label'>Email</label>
                                     <div class='control has-icons-left'>
-                                    <input type='email' placeholder='e.g. bobsmith@gmail.com' class='input' name='remail' required>
+                                    <input type='email' placeholder='e.g. bobsmith@gmail.com' class='input' name='email' required>
                                     <span class='icon is-small is-left'>
                                         <i class='fa fa-envelope'></i>
                                     </span>";
                             }
                             ?>
-                        </div>
+                            <div class="field">
+                                <label for="" class="label">Password</label>
+                                <div class="control has-icons-left">
+                                    <input type="password" placeholder="*******" class="input" name="password" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <button type="submit" class="button is-success">
+                                    Login
+                                </button>
+                            </div>
+                    </form>
                 </div>
-                <div class="field">
-                    <label for="" class="label">Password</label>
-                    <div class="control has-icons-left">
-                        <input type="password" placeholder="*******" class="input" name="password" required>
-                        <span class="icon is-small is-left">
-                            <i class="fa fa-lock"></i>
-                        </span>
-                    </div>
-                </div>
-                <div class="field">
-                    <button type="submit" class="button is-success">
-                        Login
-                    </button>
-                </div>
-                </form>
             </div>
         </div>
-    </div>
     </div>
 </section>
 </body>
