@@ -16,7 +16,7 @@ class User
     public static function logInUser($usr, mysqli $conn)
     {
         $query = "SELECT * FROM users WHERE email='$usr->email' and password='$usr->password'";
-        //echo $query;
+
         //konekcija sa bazom;
         return $conn->query($query);
     }
