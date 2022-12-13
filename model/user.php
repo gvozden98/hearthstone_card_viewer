@@ -15,25 +15,29 @@ class User
 
     public static function logInUser($usr, mysqli $conn)
     {
+
+
         $query = "SELECT * FROM users WHERE email='$usr->email' and password='$usr->password'";
+        return $conn->query($query);
 
         //konekcija sa bazom;
-        return $conn->query($query);
+
     }
 
     public static function createUser($email, $password, mysqli $conn)
     {
         $sql = "INSERT INTO users (email,password) VALUES (?,?)";
-        $stmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
             header("location: ../app/signup.php?error=stmtfailed");
             exit();
         }
-        mysqli_stmt_bind_param($stmt, "ss", $email, $password);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-        header("location: ../app/signup.php?error=none");
-        exit();
+
+        $stmt->bind_param("ss", $email, $password);
+        $stmt->execute();
+        $stmt->close();
+        header("location: ../app/login.php?error=none&email={$email}");
+        $conn->close();
     }
 
     public static function passMatch($pass, $repass)
@@ -48,36 +52,40 @@ class User
     public static function emailExists($email, mysqli $conn)
     {
         $sql = "SELECT * FROM users WHERE email=?;";
-        $stmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
             header("location: ../app/signup.php?error=stmtfailed");
             exit();
         }
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
 
-        $resultData = mysqli_stmt_get_result($stmt);
-        if ($row = mysqli_fetch_assoc($resultData)) {
-            # code...
+        header("location: ../app/signup.php?error=none");
+
+        $resultData = $stmt->get_result();
+        if ($resultData->fetch_assoc()) {
+            $stmt->close();
+            $conn->close();
+            $result = true;
+            return $result;
         } else {
+            $stmt->close();
             $result = false;
             return $result;
         }
-
-        mysqli_stmt_close($stmt);
     }
     public static function sendMessage($email, $subject, $msg, $user_id, mysqli $conn)
     {
         $sql = "INSERT INTO messages (subject,msg,user_id,email) VALUES (?,?,?,?)";
-        $stmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("location: ../app/contact.php?error=stmtfailed");
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            header("location: ../app/signup.php?error=stmtfailed");
             exit();
         }
-        mysqli_stmt_bind_param($stmt, "ssss", $subject, $msg, $user_id, $email);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
+        $stmt->bind_param("ssss", $subject, $msg, $user_id, $email);
+        $stmt->execute();
+        $stmt->close();
         header("location: ../app/contact.php?error=none");
-        exit();
+        $conn->close();
     }
 }
