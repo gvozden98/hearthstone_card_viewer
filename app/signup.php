@@ -18,6 +18,7 @@ if (isset($_POST["remail"]) && isset($_POST["rpassword"])) {
         exit();
     }
     $odg = User::createUser($remail, $rpass, $conn);
+    $conn->close();
 }
 
 if (isset($_GET["error"])) {
