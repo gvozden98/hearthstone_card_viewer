@@ -1,5 +1,5 @@
 {
-  "name": "hearthstone_deck_builder",
+  "name": "hearthstone_card_viewer",
   "version": "1.0.0",
   "description": "Simple hearthstone deck builder. A user can create decks,save them, delete them and edit them later.",
   "main": "index.js",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gvozden98/hearthstone_deck_builder.git"
+    "url": "git+https://github.com/gvozden98/hearthstone_card_viewer.git"
   },
   "author": "gvozden98",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gvozden98/hearthstone_deck_builder/issues"
+    "url": "https://github.com/gvozden98/hearthstone_card_viewer/issues"
   },
-  "homepage": "https://github.com/gvozden98/hearthstone_deck_builder#readme"
+  "homepage": "https://github.com/gvozden98/hearthstone_card_viewer#readme"
 }
