@@ -4,7 +4,7 @@ require "../app/header.php";
 require "../model/user.php";
 
 if (isset($_POST["subject"]) && isset($_POST["message"]) && isset($_POST["message"])) {
-
+    //test push
     $email = $_POST["email"];
     $subject = $_POST["subject"];
     $msg = $_POST["message"];
