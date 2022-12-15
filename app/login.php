@@ -1,7 +1,6 @@
 <?php
 require "../model/dbBroker.php";
 require "../app/header.php";
-require "../model/user.php";
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $uemail = $_POST['email'];
@@ -29,7 +28,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                     <form method="POST" action="#" class="box">
                         <div class="field">
                             <?php
-                            if (isset($_GET["error"])) {
+                            if (isset($_GET["error"]) && $_GET["error"] == "none") {
+
                                 $mail = $_GET["email"];
                                 echo "
                                     <div class='field'>
@@ -50,6 +50,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                                         <i class='fa fa-envelope'></i>
                                     </span>";
                             }
+
                             ?>
                             <div class="field">
                                 <label for="" class="label">Password</label>

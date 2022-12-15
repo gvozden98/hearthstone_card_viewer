@@ -88,4 +88,52 @@ class User
         header("location: ../app/contact.php?error=none");
         $conn->close();
     }
+    public static function deleteUser($email, mysqli $conn)
+    {
+        $sql = "DELETE FROM users WHERE email=?;";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            header("location: ../app/signup.php?error=stmtfailed");
+            exit();
+        }
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->close();
+        header("location: ../app/index.php?error=none");
+        $conn->close();
+    }
+    public static function updatePassword($email, $newpass, mysqli $conn)
+    {
+
+        $sql = "UPDATE users SET password=? WHERE email=?;";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            header("location: ../app/index.php?error=stmtfailed");
+            exit();
+        }
+        $stmt->bind_param("ss", $newpass, $email);
+        $stmt->execute();
+        $stmt->close();
+        header("location: ../app/index.php?error=none");
+        $conn->close();
+    }
+    public static function checkPass($email, $oldpass, mysqli $conn)
+    {
+        $sql = "SELECT password FROM users WHERE email=?;";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            header("location: ../app/index.php?error=stmtfailed");
+            exit();
+        }
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+
+        $resultData = $stmt->get_result();
+        $stmt->close();
+        $row = $resultData->fetch_assoc();
+        if ($row["password"] === $oldpass) {
+            return true;
+        }
+        return false;
+    }
 }

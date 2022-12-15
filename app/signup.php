@@ -1,7 +1,7 @@
 <?php
 require "../model/dbBroker.php";
 require "../app/header.php";
-require "../model/user.php";
+
 
 if (isset($_POST["remail"]) && isset($_POST["rpassword"])) {
     echo "it works!";

@@ -27,6 +27,7 @@
   </div>
   </div>
 </section>
+
 </body>
 <script src="../scripts/breadcrumbNotBugged.js"></script>
 <script src="../scripts/filtering.js"></script>

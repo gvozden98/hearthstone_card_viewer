@@ -1,7 +1,6 @@
 <?php
 require "../model/dbBroker.php";
 require "../app/header.php";
-require "../model/user.php";
 
 if (isset($_POST["subject"]) && isset($_POST["message"]) && isset($_POST["message"])) {
     //test push

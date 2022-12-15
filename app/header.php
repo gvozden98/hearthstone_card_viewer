@@ -1,5 +1,10 @@
 <?php
 session_start();
+require "../model/user.php";
+require "../model/dbBroker.php";
+if ($_SESSION['user_email']) {
+    $email = $_SESSION['user_email'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,6 +45,9 @@ session_start();
                 <a class="navbar-item" id="contact" href="../app/contact.php">
                     Contact
                 </a>
+                <a class="navbar-item" id="profile" href="../app/profil.php">
+                    Profile
+                </a>
             </div>
         </div>
 
@@ -49,10 +57,11 @@ session_start();
 
                     <?php
                     if (isset($_SESSION['user_email'])) {
-                        $mail = $_SESSION['user_email'];
+
+
                         echo "
                         <div class='navbar-item'>
-                            <p id='mailFont'>$mail</p>
+                            <p id='mailFont'>$email</p>
                         </div>
                         <a class='button is-black' href='../app/logout.php'>
                             <strong>Logout</strong>
