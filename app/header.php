@@ -2,7 +2,7 @@
 session_start();
 require "../model/user.php";
 require "../model/dbBroker.php";
-if ($_SESSION['user_email']) {
+if (isset($_SESSION['user_email'])) {
     $email = $_SESSION['user_email'];
 }
 ?>
@@ -13,12 +13,12 @@ if ($_SESSION['user_email']) {
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>HS - DeckBuilder</title>
+    <title>HS - Card Viewer</title>
     <script src="../resoruces/config.js"></script>
     <link rel="icon" href="../resoruces/Hearthstone-Logo-PNG-Image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
     <link rel="stylesheet" href="../styles/style.css" />
     <script src="https://kit.fontawesome.com/d6125651bb.js" crossorigin="anonymous"></script>
@@ -28,7 +28,7 @@ if ($_SESSION['user_email']) {
     <nav class="navbar is-fixed-top " role="navigation" aria-label="main navigation">
         <div class="navbar-brand has-background-primary">
             <a class="navbar-item" href="../app/index.php">
-                <img src="../resoruces/Hearthstone-Logo-PNG-Image.png">
+                <img src="../resoruces/Hearthstone-Logo-PNG-Image.png" alt="HS-logo">
             </a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -45,9 +45,12 @@ if ($_SESSION['user_email']) {
                 <a class="navbar-item" id="contact" href="../app/contact.php">
                     Contact
                 </a>
-                <a class="navbar-item" id="profile" href="../app/profil.php">
-                    Profile
-                </a>
+                <?php
+                if (isset($email)) {
+                    echo '<a class="navbar-item" id="profile" href="../app/profil.php">Profile</a>';
+                }
+                ?>
+
             </div>
         </div>
 
