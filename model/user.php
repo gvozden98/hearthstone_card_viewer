@@ -114,7 +114,7 @@ class User
         $stmt->bind_param("ss", $newpass, $email);
         $stmt->execute();
         $stmt->close();
-        header("location: ../app/index.php?error=none");
+        header("location: ../app/profil.php?error=none");
         $conn->close();
     }
     public static function checkPass($email, $oldpass, mysqli $conn)
