@@ -6,7 +6,8 @@ if (isset($_POST["subject"]) && isset($_POST["email"]) && isset($_POST["message"
     $email = $_POST["email"];
     $subject = $_POST["subject"];
     $msg = $_POST["message"];
-    $user_id = $_SESSION["user_id"];
+
+
 
 
 
@@ -24,7 +25,7 @@ if (isset($_POST["subject"]) && isset($_POST["email"]) && isset($_POST["message"
                     <input class="input" type="email" name="email" placeholder="bob.smith@gmail.com" <?php if (isset($_SESSION['user_email'])) {
                                                                                                             $mail = $_SESSION['user_email'];
                                                                                                             echo "value='$mail'";
-                                                                                                        } ?> required>
+                                                                                                        } ?> disabled>
                     <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                     </span>

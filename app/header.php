@@ -42,12 +42,13 @@ if (isset($_SESSION['user_email'])) {
                 <a class="navbar-item" id="home" href="../app/index.php">
                     Home
                 </a>
-                <a class="navbar-item" id="contact" href="../app/contact.php">
-                    Contact
-                </a>
                 <?php
                 if (isset($email)) {
-                    echo '<a class="navbar-item" id="profile" href="../app/profil.php">Profile</a>';
+
+
+                    echo '                <a class="navbar-item" id="contact" href="../app/contact.php">
+                    Contact
+                </a><a class="navbar-item" id="profile" href="../app/profil.php">Profile</a>';
                 }
                 ?>
 
