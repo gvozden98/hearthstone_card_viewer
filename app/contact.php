@@ -3,7 +3,6 @@ require "../model/dbBroker.php";
 require "../app/header.php";
 
 if (isset($_POST["subject"]) && isset($_POST["email"]) && isset($_POST["message"])) {
-    //test push
     $email = $_POST["email"];
     $subject = $_POST["subject"];
     $msg = $_POST["message"];

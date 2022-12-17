@@ -13,7 +13,7 @@ if (isset($_POST["btnChangePass"]) && isset($_POST['oldPassword']) && isset($_PO
 if (isset($_POST["btnDeleteAcc"]) && isset($_SESSION['user_email']) && isset($_POST['oldPassword'])) {
     if (User::checkPass($email, $_POST['oldPassword'], $conn)) {
         USER::deleteUser($email, $conn);
-        $_SESSION['user_email'] = null;
+        $_SESSION['user_email'] = null; //da li je ovo potrebno?
         session_unset();
         session_destroy();
     } else {
@@ -49,11 +49,6 @@ if (isset($_POST["btnDeleteAcc"]) && isset($_SESSION['user_email']) && isset($_P
                                 <button class="button is-danger is-inverted" name="btnOpenDeleteAcc" id="btnOpenDeleteAcc">Delete account?</button>
                             </div>
                         </div>
-                        <!-- <div class="field">
-                        <label class="label" for="newPass">Password:</label>
-                        <input class="input is-danger block" type="text" placeholder="*******" name="password">
-                        <button class="button is-danger" type="submit" name="btnDeleteAcc">Delete</button>
-                    </div> -->
                     </div>
                 </form>
 
