@@ -181,6 +181,7 @@ function filterClassic(cards) {
   return newCards;
 }
 
+//return cards based on race or class
 function filterClass(hearthstoneClassOrRace, cards, classOrRace) {
   let newCards = [],
     newCardIndex = 0;

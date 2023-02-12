@@ -19,7 +19,6 @@ class User
 
         $query = "SELECT * FROM users WHERE email='$usr->email' and password='$usr->password'";
         return $conn->query($query);
-
         //konekcija sa bazom;
 
     }
@@ -104,7 +103,6 @@ class User
     }
     public static function updatePassword($email, $newpass, mysqli $conn)
     {
-
         $sql = "UPDATE users SET password=? WHERE email=?;";
         $stmt = $conn->prepare($sql);
         if (!$stmt) {
