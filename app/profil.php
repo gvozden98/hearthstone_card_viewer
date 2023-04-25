@@ -2,9 +2,10 @@
 require "../model/dbBroker.php";
 require "../app/header.php";
 
+//proveri da li su sve promenljive postavljenje
 if (isset($_POST["btnChangePass"]) && isset($_POST['oldPassword']) && isset($_POST['newPassword']) && isset($_SESSION['user_email'])) {
-    if (User::checkPass($email, $_POST['oldPassword'], $conn)) {
-        User::updatePassword($email, $_POST['newPassword'], $conn);
+    if (User::checkPass($email, $_POST['oldPassword'], $conn)) { //proveri da li se sifre slazu
+        User::updatePassword($email, $_POST['newPassword'], $conn); //azuriraj sifru
     } else {
         header("location: ../app/profil.php?error=wrongpass");
         exit();
@@ -12,10 +13,10 @@ if (isset($_POST["btnChangePass"]) && isset($_POST['oldPassword']) && isset($_PO
 }
 if (isset($_POST["btnDeleteAcc"]) && isset($_SESSION['user_email']) && isset($_POST['oldPassword'])) {
     if (User::checkPass($email, $_POST['oldPassword'], $conn)) {
-        USER::deleteUser($email, $conn);
-        $_SESSION['user_email'] = null; //da li je ovo potrebno?
-        session_unset();
-        session_destroy();
+        User::deleteUser($email, $conn);
+        $_SESSION['user_email'] = null;
+        session_unset(); //stavi sve promenljive u sesiji na null
+        session_destroy(); //unisti sve podatke iz sesije
     } else {
         header("location: ../app/profil.php?error=wrongpass");
     }

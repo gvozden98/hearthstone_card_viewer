@@ -4,7 +4,6 @@ require "../app/header.php";
 
 
 if (isset($_POST["remail"]) && isset($_POST["rpassword"])) {
-    echo "it works!";
     $remail = $_POST["remail"];
     $rpass = $_POST["rpassword"];
     $reTypePass = $_POST["reTypePassword"];
@@ -17,7 +16,7 @@ if (isset($_POST["remail"]) && isset($_POST["rpassword"])) {
         header("location: ../app/signup.php?error=emailtaken");
         exit();
     }
-    $odg = User::createUser($remail, $rpass, $conn);
+    User::createUser($remail, $rpass, $conn);
     $conn->close();
 }
 

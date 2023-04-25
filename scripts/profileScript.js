@@ -38,7 +38,7 @@ btnOpenChangePass.addEventListener("click", function () {
     <input class="input is-link block" type="password" placeholder="*******" name="newPassword" required>
     <button class="button is-link" type="submit" name="btnChangePass">Change</button>`;
 });
-//delte notification Bulma
+//brisanje notifikacije
 document.addEventListener("DOMContentLoaded", () => {
   (document.querySelectorAll(".notification .delete") || []).forEach(
     ($delete) => {

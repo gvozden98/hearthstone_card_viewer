@@ -16,16 +16,17 @@ class User
     public static function logInUser($usr, mysqli $conn)
     {
 
-
+        //selektuj sve kod korisnika koji ima odredjeni email i odredjenu sifru
         $query = "SELECT * FROM users WHERE email='$usr->email' and password='$usr->password'";
         return $conn->query($query);
         //konekcija sa bazom;
 
     }
 
+
     public static function createUser($email, $password, mysqli $conn)
     {
-        $sql = "INSERT INTO users (email,password) VALUES (?,?)";
+        $sql = "INSERT INTO users (email,password) VALUES (?,?)"; //ubacu u tabelu users, kolonu email i password
         $stmt = $conn->prepare($sql);
         if (!$stmt) {
             header("location: ../app/signup.php?error=stmtfailed");
@@ -51,17 +52,18 @@ class User
     public static function emailExists($email, mysqli $conn)
     {
         $sql = "SELECT * FROM users WHERE email=?;";
-        $stmt = $conn->prepare($sql);
+        $stmt = $conn->prepare($sql); //pripremanje poziva
         if (!$stmt) {
             header("location: ../app/signup.php?error=stmtfailed");
             exit();
         }
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
+        $stmt->bind_param("s", $email); //postavi promenljivu
+        $stmt->execute(); //izvrsi
 
         header("location: ../app/signup.php?error=none");
 
         $resultData = $stmt->get_result();
+        //ako je pronadjen isti email,vrati true, u suprotnom vrati false i zatvori konekciju
         if ($resultData->fetch_assoc()) {
             $stmt->close();
             $conn->close();
@@ -88,7 +90,7 @@ class User
         $conn->close();
     }
     public static function deleteUser($email, mysqli $conn)
-    {
+    {   //obrisi korisnika iz tabele useres gde je email jednak unetom
         $sql = "DELETE FROM users WHERE email=?;";
         $stmt = $conn->prepare($sql);
         if (!$stmt) {
@@ -103,7 +105,7 @@ class User
     }
     public static function updatePassword($email, $newpass, mysqli $conn)
     {
-        $sql = "UPDATE users SET password=? WHERE email=?;";
+        $sql = "UPDATE users SET password=? WHERE email=?;"; //azuriraj sifru korisnika koji ima odredjeni email
         $stmt = $conn->prepare($sql);
         if (!$stmt) {
             header("location: ../app/index.php?error=stmtfailed");
@@ -116,7 +118,7 @@ class User
         $conn->close();
     }
     public static function checkPass($email, $oldpass, mysqli $conn)
-    {
+    {   //selektuj sifru iz tabele users gde je mejl jednak ulogovanom korisniku
         $sql = "SELECT password FROM users WHERE email=?;";
         $stmt = $conn->prepare($sql);
         if (!$stmt) {
@@ -129,7 +131,7 @@ class User
         $resultData = $stmt->get_result();
         $stmt->close();
         $row = $resultData->fetch_assoc();
-        if ($row["password"] === $oldpass) {
+        if ($row["password"] === $oldpass) {//ako je pronadjena sifra ista kao ukucana sifra,vrati true
             return true;
         }
         return false;

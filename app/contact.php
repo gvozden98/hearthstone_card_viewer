@@ -2,20 +2,16 @@
 require "../model/dbBroker.php";
 require "../app/header.php";
 
-if (isset($_POST["subject"]) && isset($_POST["email"]) && isset($_POST["message"])) {
-    $email = $_POST["email"];
+if (isset($_POST["subject"]) && isset($_SESSION['user_email']) && isset($_POST["message"]) && isset($_SESSION['user_id'])) {
+
+    $email = $_SESSION['user_email'];
     $subject = $_POST["subject"];
     $msg = $_POST["message"];
-
-
-
-
-
-    $odg = User::sendMessage($email, $subject, $msg, $user_id, $conn);
+    $odg = User::sendMessage($email, $subject, $msg, $_SESSION['user_id'], $conn);
 }
 
-
 ?>
+
 <section class="section">
     <div class="container">
         <form method="POST" action="#" class="box">
@@ -49,11 +45,16 @@ if (isset($_POST["subject"]) && isset($_POST["email"]) && isset($_POST["message"
             </div>
             <div class="field is-grouped">
                 <div class="control">
-                    <button class="button is-link">Submit</button>
+                    <button class="button is-link" type="submit">Submit</button>
                 </div>
                 <div class="control">
                     <button class="button is-link is-light">Cancel</button>
                 </div>
+                <?php
+                if (isset($_POST["email"])) {
+                    echo $_POST["email"];
+                }
+                ?>
                 <?php
                 if (isset($_GET["error"])) {
                     if ($_GET["error"] == "none") {

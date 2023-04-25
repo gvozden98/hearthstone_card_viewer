@@ -64,10 +64,10 @@ function chooseRace() {
   `;
 }
 function getCardsByClassOrRace(classOrRace) {
-  let liItems = breadcrumbUl.getElementsByTagName("li");
-  for (let index = 0; index < liItems.length; index++) {
+  let liItems = breadcrumbUl.getElementsByTagName("li");//uzmi sve li elemente
+  for (let index = 0; index < liItems.length; index++) {//dodaj event click listener na njih
     liItems[index].addEventListener("click", function (e) {
-      console.log(liItems[index].innerText);
+      //na osnovu kliknutog li elementa, pozovi API
       cardsByClassOrRaceRequest(e, liItems[index].innerText, classOrRace);
     });
   }

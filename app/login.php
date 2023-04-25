@@ -5,11 +5,11 @@ require "../app/header.php";
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $uemail = $_POST['email'];
     $upass = $_POST['password'];
-    $korisnik = new User($uemail, $upass);
-    $odg = $korisnik::logInUser($korisnik, $conn);
-    if ($odg->num_rows == 1) {
+    $korisnik = new User($uemail, $upass); //kreiraj novog korisnika
+    $odg = $korisnik::logInUser($korisnik, $conn); //uloguj korsnika
+    if ($odg->num_rows == 1) { //ako postoji korsnik u bayi, korisnik je ulogovan
         $_SESSION['user_id'] = $odg->fetch_assoc()['user_id'];
-        $_SESSION['user_email'] = $korisnik->email;
+        $_SESSION['user_email'] = $korisnik->email; //postavljanje session promenljibve
         header('Location: ../app/index.php?loginok');
         exit();
     } else {

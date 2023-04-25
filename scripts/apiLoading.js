@@ -1,62 +1,46 @@
 const key = config.MY_KEY;
 const cardContainer = document.getElementById("card-container");
 window.addEventListener("load", sendRequest);
-function sendRequest(
-  e,
-  attack = null,
-  health = null,
-  cost = null,
-  hearthstoneClass = null
-) {
+function sendRequest(e, attack = null, health = null, cost = null) {
   const data = null;
 
   const xhr = new XMLHttpRequest();
   xhr.withCredentials = true;
 
   xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE && hearthstoneClass != null) {
-      if (this.status === 200) {
-      }
-    }
     if (this.readyState === this.DONE) {
       if (this.status === 200) {
-        const cards = JSON.parse(this.responseText);
-        cardContainer.innerHTML = "";
-        displayCards(cards);
-        console.log(cards.length);
-        console.log(cards);
+        const cards = JSON.parse(this.responseText); //parsiraj json u niz objekata
+        cardContainer.innerHTML = ""; //obrisi karte koje su vec prikazane
+        displayCards(cards); //prikazi nove karte
       }
-    } else {
     }
   });
 
   if (cost != null) {
     xhr.open(
+      //otovri novu konekciju
       "GET",
       `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic?cost=${cost}&collectible=1`
     );
-    console.log("cost");
   }
   if (attack != null) {
     xhr.open(
       "GET",
       `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic?attack=${attack}&collectible=1`
     );
-    console.log("attack");
   }
   if (health != null) {
     xhr.open(
       "GET",
       `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic?health=${health}&collectible=1`
     );
-    console.log("health");
   }
   if (attack == null && health == null && cost == null) {
     xhr.open(
       "GET",
       "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic?collectible=1"
     );
-    console.log("else");
   }
   xhr.setRequestHeader("X-RapidAPI-Key", `${key}`);
   xhr.setRequestHeader(
@@ -77,8 +61,7 @@ function searchCard(e, searchQuery) {
     if (this.readyState === this.DONE) {
       const cards = JSON.parse(this.responseText);
       cardContainer.innerHTML = "";
-      console.log(cards);
-      displayCards(filterClassic(cards));
+      displayCards(filterClassic(cards)); //prikazi karte i filtriraj classic
     }
   });
 
@@ -143,8 +126,8 @@ function cardsByClassOrRaceRequest(e, hearthstoneClassOrRace, classOrRace) {
   xhr.send(data);
 }
 function displayCards(responseCards) {
-  //probao sam da napravim dinamicko loadovanje slika ali nisam uspeo zboog event listenera
   const createCard = (index) => {
+    //kreiraj kartice sa tagovi koji omogucavaju njihov prikaz
     const card = document.createElement("div");
     card.innerHTML = `<div class="card">
   <div class="card-image">
@@ -161,7 +144,7 @@ function displayCards(responseCards) {
   };
   const addCards = () => {
     for (let i = 1; i <= responseCards.length; i++) {
-      if (responseCards[i - 1].img === undefined) {
+      if (responseCards[i - 1].img === undefined) {//neke karte nemaju sliku
         continue;
       }
       createCard(i);
@@ -181,17 +164,17 @@ function filterClassic(cards) {
   return newCards;
 }
 
-//return cards based on race or class
+//vrati karte u odnosu na klasu ili rasu
 function filterClass(hearthstoneClassOrRace, cards, classOrRace) {
   let newCards = [],
     newCardIndex = 0;
-  if (classOrRace) {
+  if (classOrRace) {//ako je potrebna klasa,vrati samo one koje imaju tu klasu
     for (let index = 0; index < cards.length; index++) {
       if (cards[index].playerClass === hearthstoneClassOrRace) {
         newCards[newCardIndex++] = cards[index];
       } else continue;
     }
-  } else {
+  } else {//u suportnom vrati one koji su odredjene rase
     for (let index = 0; index < cards.length; index++) {
       if (cards[index].race === hearthstoneClassOrRace) {
         newCards[newCardIndex++] = cards[index];
